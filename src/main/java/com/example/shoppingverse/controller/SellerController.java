@@ -1,9 +1,9 @@
 package com.example.shoppingverse.controller;
 
-import com.example.shoppingverse.dto.requestDto.CustomerRequestDto;
-import com.example.shoppingverse.dto.responseDto.CustomerResponseDto;
-import com.example.shoppingverse.model.Customer;
-import com.example.shoppingverse.service.CustomerService;
+import com.example.shoppingverse.dto.requestDto.SellerRequestDto;
+import com.example.shoppingverse.dto.responseDto.SellerResponseDto;
+import com.example.shoppingverse.model.Seller;
+import com.example.shoppingverse.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,20 +12,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
-
-
 @RestController
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/seller")
+public class SellerController {
 
     @Autowired
-    CustomerService customerService;
+    SellerService sellerService;
 
     @PostMapping("/add")
-    public ResponseEntity addCustomer(@RequestBody CustomerRequestDto customerRequestDto){
+    public ResponseEntity addSeller(@RequestBody SellerRequestDto sellerRequestDto){
+        SellerResponseDto response = sellerService.addSeller(sellerRequestDto);
 
-        CustomerResponseDto response = customerService.addCustomer(customerRequestDto);
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 }
