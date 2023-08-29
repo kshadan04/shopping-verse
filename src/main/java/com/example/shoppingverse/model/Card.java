@@ -3,10 +3,7 @@ package com.example.shoppingverse.model;
 
 import com.example.shoppingverse.Enum.CardType;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -18,20 +15,22 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 
+@Builder
 public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    int cardNo;
+    String cardNo;
 
     int cvv;
 
-    @CreationTimestamp
+//    @CreationTimestamp
     Date validTill;
 
-    CardType card;
+    @Enumerated(EnumType.STRING)
+    CardType cardType;
 
     @ManyToOne
     @JoinColumn
